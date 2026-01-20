@@ -1,0 +1,47 @@
+name: Shop Sniper Worker
+
+on:
+  schedule:
+    - cron: '0 */6 * * *' # Chạy mỗi 6 tiếng (00:00, 06:00, 12:00, 18:00 UTC)
+  workflow_dispatch: # Cho phép bấm nút chạy thủ công để test
+
+permissions:
+  contents: write # Cấp quyền ghi để lưu file json
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 355 # Giới hạn job tối đa 355 phút (gần 6h)
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+
+    - name: Run Bot (5h50m Timeout)
+      continue-on-error: true # Quan trọng: Để lỗi timeout không làm dừng workflow ngay lập tức
+      timeout-minutes: 350 # Chạy code trong 350 phút rồi tự ngắt
+      env:
+        SHOP_DOMAIN: ${{ secrets.SHOP_DOMAIN }}
+        SHOP_USER: ${{ secrets.SHOP_USER }}
+        SHOP_PASS: ${{ secrets.SHOP_PASS }}
+        BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+        OWNER_ID: ${{ secrets.OWNER_ID }}
+      run: python bot.py
+
+    - name: Commit Database (Auto-save)
+      if: always() # Luôn chạy bước này kể cả khi bot bị timeout
+      run: |
+        git config --global user.name 'Sniper Bot'
+        git config --global user.email 'bot@actions.github.com'
+        git add watchlist.json
+        # Chỉ commit nếu có thay đổi
+        git diff --quiet && git diff --staged --quiet || (git commit -m "💾 Auto-save watchlist [skip ci]" && git push)
