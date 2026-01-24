@@ -3,13 +3,13 @@
     "name": "01. CLONE NGOẠI - QUA REG BM - SIÊU RẺ",
     "threshold": 100,
     "price": "36.25",
-    "last_alert": 1769182843.5007975
+    "last_alert": 1769237809.779134
   },
   "8779": {
     "name": "05. CLONE NGOẠI - CHƠI TUT ADS - NEW ZIN 100%",
     "threshold": 100,
     "price": "321.75",
-    "last_alert": 1769183824.5409248
+    "last_alert": 1769237932.9310536
   },
   "8774": {
     "name": "03. CLONE NGOẠI - CHƠI TUT ADS - NEW ZIN 100%",
@@ -21,7 +21,7 @@
     "name": "02. CLONE NGOẠI - CHƠI TUT ADS - NEW ZIN 100%",
     "threshold": 100,
     "price": "305.25",
-    "last_alert": 1769189939.585689
+    "last_alert": 1769224758.6921296
   },
   "7532": {
     "name": "1. CLONE NGOẠI - CHƠI TUT ADS - NEW ZIN 100%",
@@ -33,6 +33,6 @@
     "name": "4. CLONE NGOẠI - CHƠI TUT ADS - NEW ZIN 100%",
     "threshold": 100,
     "price": "357.938",
-    "last_alert": 1769191102.4894636
+    "last_alert": 1769230247.7111647
   }
 }
