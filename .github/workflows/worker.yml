@@ -2,7 +2,7 @@ name: Shop Sniper Worker
 
 on:
   schedule:
-    - cron: '0 */6 * * *' # Chạy mỗi 6 tiếng (00:00, 06:00, 12:00, 18:00 UTC)
+#    - cron: '0 */6 * * *' # Chạy mỗi 6 tiếng (00:00, 06:00, 12:00, 18:00 UTC)
   workflow_dispatch: # Cho phép bấm nút chạy thủ công để test
 
 permissions:
